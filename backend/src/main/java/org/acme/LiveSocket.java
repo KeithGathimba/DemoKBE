@@ -1,4 +1,4 @@
-package main.java.org.acme;
+package org.acme;
 
 import io.quarkus.websockets.next.OnOpen;
 import io.quarkus.websockets.next.WebSocket;

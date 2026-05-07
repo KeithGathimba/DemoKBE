@@ -1,13 +1,10 @@
 <script setup>
 import { useWebSocket } from '@vueuse/core'
 
-// Verbinde dich mit deinem Quarkus Backend
-// Wichtig: 'ws://' nutzen, nicht 'http://'
-const { status, data, send, open, close } = useWebSocket('ws://localhost:8080/live', {
-  autoReconnect: true, // Verbindet sich automatisch neu, wenn der Server mal weg ist
+const { status, data, send } = useWebSocket('ws://localhost:8080/live', {
+  autoReconnect: true,
 })
 
-// Eine kleine Funktion, um dem Server etwas zu schicken
 const pingServer = () => {
   send('Hallo Backend, hier ist Vue!')
 }
@@ -24,12 +21,12 @@ const pingServer = () => {
     </p>
 
     <div v-if="data" style="background: #e0ffe0; padding: 1rem; margin-bottom: 1rem;">
-      <strong>Letzte Nachricht vom Server:</strong>
+      <strong>Vom Server:</strong>
       <p>{{ data }}</p>
     </div>
 
     <button @click="pingServer" :disabled="status !== 'OPEN'">
-      Nachricht an Server senden
+      Nachricht senden
     </button>
   </main>
 </template>
