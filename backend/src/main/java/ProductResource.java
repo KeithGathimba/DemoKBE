@@ -1,4 +1,4 @@
-package main.java.org.acme;
+package main.java;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
