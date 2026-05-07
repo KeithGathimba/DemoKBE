@@ -1,5 +1,5 @@
 <script setup>
-import { useWebSocket } from '@vueuse/core'
+import { useWebSocket, useMouse } from '@vueuse/core'
 
 const { status, data, send } = useWebSocket('ws://localhost:8080/live', {
   autoReconnect: true,
@@ -8,6 +8,7 @@ const { status, data, send } = useWebSocket('ws://localhost:8080/live', {
 const pingServer = () => {
   send('Hallo Backend, hier ist Vue!')
 }
+const { x, y } = useMouse()
 </script>
 
 <template>
@@ -28,5 +29,10 @@ const pingServer = () => {
     <button @click="pingServer" :disabled="status !== 'OPEN'">
       Nachricht senden
     </button>
+    <hr style="margin: 2rem 0; border: 1px solid #ccc;">
+
+    <h2>VueUse Live-Demo 🖱️</h2>
+    <p>Bewege die Maus über den Bildschirm:</p>
+    <h3 style="color: #aa3bff;">X: {{ x }} | Y: {{ y }}</h3>
   </main>
 </template>
